@@ -16,6 +16,10 @@ Ethan purchases the option from the writer of the contract using any exchange. I
 
 <p>&nbsp;</p>
 
+![uc1](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/uc1.png)
+
+<p>&nbsp;</p>
+
 ### Why OptionBlox
 
 #### Efficiency
@@ -45,6 +49,10 @@ Latera uses his THUMB shares as collateral to write and sell 1.5 THUMB call opti
 
 #### Implementation
 Latera uses an equity anchor in the Stellar ecosystem to tokenize his shares. He then uses OptionBlox to write his call option contracts, using his tokenized shares as collateral.
+
+<p>&nbsp;</p>
+
+![uc2](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/uc2.png)
 
 <p>&nbsp;</p>
 
@@ -80,6 +88,10 @@ Adam uses OptionBlox to enter the USD side of the future, using a USD anchored t
 
 <p>&nbsp;</p>
 
+![uc3](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/uc3.png)
+
+<p>&nbsp;</p>
+
 ### Why OptionBlox
 
 #### Efficiency
@@ -109,6 +121,10 @@ Xiao uses OptionBlox to enter into a Carbon-Credit:EUR swap. This contract will 
 
 #### Implementation
 Xiao uses OptionBlox to enter the EUR side of the swap, using a EUR anchored token and a Carbon Credit anchored token to represent the underlying assets. She will use OptionBlox to carry out the initiation and expiration transactions associated with the swap.
+
+<p>&nbsp;</p>
+
+![uc4](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/uc4.png)
 
 <p>&nbsp;</p>
 
