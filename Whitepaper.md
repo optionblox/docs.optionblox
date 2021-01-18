@@ -1,4 +1,4 @@
-![Logo Image](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/OBX%20Logo.png)
+![Logo Image](./static/logo/obx.png)
 # OptionBlox
 ## A Decentralized Derivatives Solution Built on Stellar
 
@@ -17,15 +17,15 @@ OptionBlox is a protocol for writing, trading, and exercising financial derivati
 <p>&nbsp;</p>
 
 ### Table of Contents:
-- [Introduction](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#introduction)
-- [Explanation of Derivatives](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#derivatives)
-- [Value Proposition](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#value-proposition)
-- [Use Cases](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#use-cases)
-- [Stellar - OptionBlox's Decentralized Ledger](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#stellar---optionbloxs-chosen-decentralized-ledger)
-- [OptionBlox's Derivative Protocols](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#optionbloxs-derivative-protocols)
-- [Security Measures](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#security)
-- [Roadmap](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#roadmap)
-- [Glossary](https://github.com/markuspluna/OBXwhitepaper/blob/master/Whitepaper.md#glossary)
+- [Introduction](#introduction)
+- [Explanation of Derivatives](#derivatives)
+- [Value Proposition](#value-proposition)
+- [Use Cases](#use-cases)
+- [Stellar - OptionBlox's Decentralized Ledger](#stellar---optionbloxs-chosen-decentralized-ledger)
+- [OptionBlox's Derivative Protocols](#optionbloxs-derivative-protocols)
+- [Security Measures](#security)
+- [Roadmap](#roadmap)
+- [Glossary](#glossary)
 
 <p>&nbsp;</p>
 
@@ -55,7 +55,7 @@ Swaps are similar to forwards. The difference is that instead of one exchange of
 The incumbent derivatives market suffers from a large amount of friction. It requires market intermediaries to provide access to the market, facilitate trades, and lower counterparty risk. These additional parties cause inefficiency which creates costs that get passed on to investors. By facilitating derivatives on Stellar's decentralized network, OptionBlox eliminates the need for market intermediaries. The diagram below illustrate the efficiency gained from eliminating market intermediaries by comparing the post-trade process in the traditional derivatives ecosystem with the post-trade process in the OptionBlox derivatives ecosystem.
 
 **Post-Trade processing comparison**\
-![alt text](https://github.com/markuspluna/OBXwhitepaper/blob/master/photos/post-trade%20processing%20comparison.jpg "Post-Trade Processing Comparison")
+![post-trade](./static/whitepaper/postTradeProcessingComparison.jpg "Post-Trade Processing Comparison")
 > Citation: ISDA. "The Future of Derivatives Processing and Market Infrastructure". ISDA Whitepaper. 2016.
 
 
@@ -165,14 +165,14 @@ OptionBlox covered options are created using a network of accounts and TSS(Turin
 
 Below is a basic model showing the writing, sale, and exercise processes of a covered call with an underlying of 1 Bitcoin(BTC), and a strike price of 1000 Lumens(XLM).
 
-![alt text](https://github.com/markuspluna/OBXwhitepaper/blob/master/photos/CoveredOptions(whitepaper)-(v2).png "Covered Options")
+![covered](./static/whitepaper/coveredOptionsDiagram.png "Covered Options")
 
 ##### Uncovered Options
 OptionBlox uncovered options are similar to OptionBlox covered options. The key differences are the holding account also serves as a margin account for the seller and the execution process differs slightly.
 
 Below is a model showing the writing, sale, and execution process of an uncovered call. The call contract's underlying is 1 BTC, its strike price is 100 XLM, the initial margin requirement is 15%, and the minimum margin requirement is 10%. These options are American style.
 
-![alt text](https://github.com/markuspluna/OBXwhitepaper/blob/master/photos/UncoveredOptions(whitepaper)-noexample.png "Uncovered Options")
+![uncoverd](./static/whitepaper/uncoveredOptionsDiagram.png "Uncovered Options")
 
 ##### Futures
 OptionBlox futures also operates using a network of accounts and TSS contracts. Instead of using derivative tokens, the futures protocol issues tokens for the underlying asset, so a party who enters a contract with an underlying of 100 XLM would receive 100 XLMFUTURE tokens. Contract parties exchange these tokens to enter a futures contract; the price they exchanged tokens at represents the spot rate the future is entered at. OptionBlox settles futures daily using a [mark-to-market](https://www.cmegroup.com/education/courses/introduction-to-futures/mark-to-market.html] system.
@@ -198,8 +198,8 @@ Tokenizing derivatives allows OptionBlox users to write partial derivative contr
 ##### Liquidation Prodecures
 OptionBlox uncovered options and futures require position liquidation when the position holders become delinquent in meeting their margin requirements or fail to provide the necessary underlying to complete contract settlement. In these situations, the protocol will attempt to liquidate positions on the Stellar DEX. However, if low volume makes this impossible, OptionBlox uses a TSS managed liquidity pool to liquidate the contracts. 
 
-![alt text](https://github.com/markuspluna/OBXwhitepaper/blob/master/photos/UncoveredOptionLiquidation(whitepaper)-(v2).png "Insufficient Margin Liquidation (option)")
-![alt text](https://github.com/markuspluna/OBXwhitepaper/blob/master/photos/FuturesNoUnderlying(whitepaper)-(v2).png "Insufficient Underlying(future)")
+![uncoveredLqd](./static/whitepaper/uncoveredOptionsLiquidation.png "Insufficient Margin Liquidation (option)")
+![futureNoUnder](./static/whitepaper/futureNoUnderlying.png "Insufficient Underlying (future)")
 
 The OptionBlox liquidity pool is made up of user-provided funds and managed by a TSS contract. Users will receive tokens in exchange for the funds they contribute, the tokens represent their contribution and govern the percentage of liquidation profits they receive. Because of the margin requirements for OptionBlox contracts, it will never be in the position holder's economic interest to allow liquidation, and there will always be an economic incentive to liquidate the position. Profits from liquidating delinquent positions will be paid out to liquidity providers every week. 
 

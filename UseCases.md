@@ -16,7 +16,7 @@ Ethan purchases the option from the writer of the contract using any exchange. I
 
 <p>&nbsp;</p>
 
-![uc1](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/uc1.png)
+![uc1](./static/useCases/uc1.png "Crypto Options")
 
 <p>&nbsp;</p>
 
@@ -52,7 +52,7 @@ Latera uses an equity anchor in the Stellar ecosystem to tokenize his shares. He
 
 <p>&nbsp;</p>
 
-![uc2](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/uc2.png)
+![uc2](./static/useCases/uc2.png "Equity Options")
 
 <p>&nbsp;</p>
 
@@ -88,7 +88,7 @@ Adam uses OptionBlox to enter the USD side of the future, using a USD anchored t
 
 <p>&nbsp;</p>
 
-![uc3](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/uc3.png)
+![uc3](./static/useCases/uc3.png "OTC Futures")
 
 <p>&nbsp;</p>
 
@@ -124,7 +124,7 @@ Xiao uses OptionBlox to enter the EUR side of the swap, using a EUR anchored tok
 
 <p>&nbsp;</p>
 
-![uc4](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/uc4.png)
+![uc4](./static/useCases/uc4.png "OTC Swaps")
 
 <p>&nbsp;</p>
 
