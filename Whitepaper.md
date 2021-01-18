@@ -52,7 +52,7 @@ Swaps are similar to forwards. The difference is that instead of one exchange of
 #### Value Proposition:  
 
 ##### Increased Efficiency  
-The incumbent derivatives market suffers from a large amount of friction. It requires market intermediaries to provide access to the market, facilitate trades, and lower counterparty risk. These additional parties cause inefficiency which creates costs that get passed on to investors. By facilitating derivatives on Stellar's decentralized network, OptionBlox eliminates the need for market intermediaries. The diagram below illustrate the efficiency gained by eliminating market intermediaries by comparing the post-trade process in the traditional derivatives ecosystem with the post-trade process in the OptionBlox derivatives ecosystem.
+The incumbent derivatives market suffers from a large amount of friction. It requires market intermediaries to provide access to the market, facilitate trades, and lower counterparty risk. These additional parties cause inefficiency which creates costs that get passed on to investors. By facilitating derivatives on Stellar's decentralized network, OptionBlox eliminates the need for market intermediaries. The diagram below illustrate the efficiency gained from eliminating market intermediaries by comparing the post-trade process in the traditional derivatives ecosystem with the post-trade process in the OptionBlox derivatives ecosystem.
 
 **Post-Trade processing comparison**\
 ![alt text](https://github.com/markuspluna/OBXwhitepaper/blob/master/photos/post-trade%20processing%20comparison.jpg "Post-Trade Processing Comparison")
@@ -63,11 +63,11 @@ A research paper that covered Stellar-based financial derivatives measured the m
  \
 We expect these gains in efficiency to exponentially increase when it comes to OTC(Over-The-Counter) derivatives. OTC contracts are highly specified, complicated, and can carry a large amount of counterparty risk. Traditionally, a party that wants to enter an OTC contract has to find both a counterparty and a facilitating party. OptionBlox's protocol eliminates the need for the facilitating party and makes it easier to find a counterparty by improving ecosystem accessibility. As a result, OptionBlox significantly increases OTC derivative efficiency and accessibility.\
  \
-The formentioned research paper also discussed data access fees that derivative users pay to central parties in the traditional derivative ecosystem. These fees are another example of inefficiency and friction in the traditional derivative ecosystem. In a Stellar-based derivative ecosystem, all data would be public since all transactions are recorded on-ledger. This would eliminate a significant source of cost and inefficiency.\
+The aformentioned research paper also discussed data access fees that derivative users pay to central parties in the traditional derivative ecosystem. These fees are another example of inefficiency and friction in the traditional derivative ecosystem. In a Stellar-based derivative ecosystem, all data would be public since all transactions are recorded on-ledger. This would eliminate a significant source of cost and inefficiency.\
 \
 OptionBlox also holds efficiency advantages over other decentralized derivative products. Most of these are built on Ethereum, which is a fundamentally less efficient decentralized ledger than Stellar.\
 \
-Tables exhibiting the economic impact of the formentioned efficiency increases are exhibited below:
+Tables exhibiting the economic impact of the aformentioned efficiency increases are exhibited below:
 
 
 **Ecosystem Fees Associated with Stellar Based Derivatives**
@@ -151,7 +151,7 @@ Stellar has a multi-asset functionality called anchoring that enables users to c
 - *Flexible Transaction System*:  
 Stellar has a flexible transaction system that allows us to create derivatives and make them trust-free, tradeable, and safe.  
 - *[Turing Signing Servers](https://github.com/tyvdh/turing-signing-server)*:\
-The Stellar Community is currently discussing implementing a new ecosystem feature called Turing Signing Servers. These are a decentralized network of servers that hold uploaded smart contracts that are associated with private keys. The servers will sign transactions with these private keys if the transactions meet the specifications of the contracts. OptionBlox will use this tool to manage some of the business logic surrounding contract execution and closure. However, if this feature is not implemented OptionBlox will simply use an open-source repository to manage execution business logic.
+The Stellar Community is currently discussing implementing a new ecosystem feature called Turing Signing Servers. These are a decentralized network of servers that hold uploaded smart contracts that are associated with private keys. The servers will sign transactions with these private keys if the transactions meet the specifications of the contracts. OptionBlox will use this tool to manage some of the business logic surrounding contract execution and closure. However, if this feature is not implemented OptionBlox will simply use an open-source repository to manage contract logic.
 
 [Stellar's website](https://stellar.org/developers)
 
