@@ -1,3 +1,4 @@
+![Logo Image](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Pictures/OBX%20Logo.png)
 # OptionBlox
 ## A Decentralized Derivatives Solution Built on Stellar
 
