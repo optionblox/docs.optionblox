@@ -104,7 +104,7 @@ OptionBlox also uses the Anchor system to tokenize derivative contracts. Tokeniz
 
 <p>&nbsp;</p>
 
-#### [Use Cases](http://optionblox.com/use-cases)
+#### [Use Cases](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Use%20Cases.md)
 
 <p>&nbsp;</p>
 
