@@ -263,24 +263,16 @@ As Stellar's network grows we are confident that more anchors will materialize a
 <p>&nbsp;</p>
 
 ### Roadmap
-1. *Q3 2020*
-- Finalize Backend Demo
-- Finalize Web-App Demo
-- Continue Application Development
-- Expand Engineering Team
-- Begin Seed Funding Search
-- Explore Wallet Parnerships
- 2. *Q4 2020*
+ 1. *Q4 2020*
    - Finalize Website
    - Continue Application Development
    - Expand Fundraising Efforts
-   - Launch Advisory Board
-   - Explore Further Ecosystem Partnerships
- 3. *Q1 2021*
+   - Explore Ecosystem Partnerships
+ 2. *Q1 2021*
    - Roll-out Full Demo/Alpha
      - Functional Testnet Application
    - Explore Market Maker Partnerships
- 4. *Q2 2021*
+ 3. *Q2 2021*
    - Launch Open-Beta for Covered Options
    - Launch Closed Alpha for Uncovered Options and Futures
    - Launch Closed Alpha for OTC contract development tool
