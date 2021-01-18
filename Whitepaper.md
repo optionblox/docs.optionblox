@@ -1,4 +1,3 @@
-![alt text](https://github.com/markuspluna/OBXwhitepaper/blob/master/photos/obx%20logo.png "Logo Title Text 1")
 # OptionBlox
 ## A Decentralized Derivatives Solution Built on Stellar
 
