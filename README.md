@@ -1,10 +1,13 @@
 ![header](./static/logo/overview.png)
 
+[<img src = "./static/logo/obx.png">](https://www.optionblox.com/)
 # Welcome to OptionBlox
 
-Some good introduction
+Welcome to the OptionBlox docs page. OptionBlox is a [Turing Signing Server](https://tss.stellar.org/) DeFi protocol for writing, trading, and executing financial derivatives on Stellar.
 
-Stellar Seed Fund: https://optionblox.slack.com/archives/D01AYF9GRK7/p1611004448010900
+As you can probably tell, this docs page is currently under development. 
+
+OptionBlox's Stellar Seed Fund Submission: https://communityfund.stellar.org/seed-fund#/entry/1e354b3b328209c85dc1d978cb1ea527d5df60dc04d8ae794f04517bea01d852
 
 ### Documentation
 
@@ -12,7 +15,18 @@ Stellar Seed Fund: https://optionblox.slack.com/archives/D01AYF9GRK7/p1611004448
 
 [Use Cases](./UseCases.md)
 
-
-
-
-
+### Roadmap
+ 1. *Q4 2020*
+   - Finalize Website
+   - Continue Application Development
+   - Expand Fundraising Efforts
+   - Explore Ecosystem Partnerships
+ 2. *Q1 2021*
+   - Roll-out Full Demo/Alpha
+     - Functional Testnet Application
+   - Explore Market Maker Partnerships
+ 3. *Q2 2021*
+   - Launch Open-Beta for Covered Options
+   - Launch Closed Alpha for Uncovered Options and Futures
+   - Launch Closed Alpha for OTC contract development tool
+   
