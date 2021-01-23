@@ -23,3 +23,8 @@ Forwards are similar to futures. The main difference is that they are not settle
 
 #### Swaps
 Swaps are similar to forwards. The difference is that instead of one exchange of assets at the expiration date, the parties swap assets twice. Once at the beginning of the contract and once at the end. These exchanges are referred to as the "near leg" and the "far leg". Like forwards, these contracts are typically highly specified to the involved parties' needs.
+
+#### More Resources
+[Investopedia Article on Derivatives](https://www.investopedia.com/terms/d/derivative.asp)\
+[TastyTrade Derivatives Learning Center](https://tastytrade.thinkific.com/)\
+[Investopedia Article on Options](https://www.investopedia.com/terms/o/option.asp)\
