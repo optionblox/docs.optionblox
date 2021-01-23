@@ -1,4 +1,3 @@
-[<img src = "./static/logo/obx.png">](https://www.optionblox.com/)
 # Stellar - The ideal platform for OptionBlox
 OptionBlox uses Stellar's decentralized ledger to support its protocol.
 
@@ -13,7 +12,7 @@ For more general information visit: [Stellar's Website](https://www.stellar.org/
 For more information on how the nodes validate transactions see: [Stellar Consensus Protocol](https://www.stellar.org/developers/guides/concepts/scp.html).  
 For more information on how OptionBlox interacts with Stellar’s network visit: [Network Overview](https://www.stellar.org/developers/guides/get-started/index.html).
 
-### Why we built on Stellar
+## Why we built on Stellar
 Stellar’s focus on financial applications has made it the ideal network to develop OptionBlox on.\
 Characteristics of the Stellar network crucial to OptionBlox:
 - *Efficiency*:  
@@ -27,7 +26,7 @@ Stellar has a flexible transaction system that allows us to create derivatives a
 - *[Turing Signing Servers]( https://tss.stellar.org/)*:\
 The Stellar Community is currently discussing implementing a new ecosystem feature called Turing Signing Servers. These are a decentralized network of servers that hold uploaded smart contracts, called txFunctions, which the server ties to private keys. The servers sign transactions with these private keys if the transactions meet the specifications of the contracts. OptionBlox uses this tool to manage some of the Turing complete logic surrounding derivative contract processing. However, if the Stellar ecosystem does not implement this feature, OptionBlox will pivot to using an open-source repository to manage derivative contract logic.
 
-### Security:
+## Security:
 
 OptionBlox uses a variety of Stellar's features to ensure that derivatives and margin accounts associated with the protocol are secure.
 
@@ -57,7 +56,7 @@ The OptionBlox web-app uses Stellar's SEP-0007 protocol to send transaction enve
 
 <p>&nbsp;</p>
 
-### Anchors:
+## Anchors:
 
 The functionality of OptionBlox is tied directly to the availability of Anchors in the Stellar ecosystem. To use a non-native asset as a derivative contract’s underlying asset, a third party must already be anchoring the asset.  
 Here are some non-native assets that are currently anchored by reputable parties:

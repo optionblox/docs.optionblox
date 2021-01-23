@@ -1,10 +1,7 @@
-[<img src = "./static/logo/obx.png">](https://www.optionblox.com/)
 # Use Cases
 OptionBlox enabled derivative use cases.
-<p>&nbsp;</p>
 
-
-## 1. Crypto Options
+## Crypto Options
 
 #### The Problem 
 Ethan wants to invest in XLM but only be exposed to the upside of the position.
@@ -17,7 +14,7 @@ Ethan purchases the option from the writer of the contract using any exchange. I
 
 <p>&nbsp;</p>
 
-![uc1](./static/useCases/uc1.png "Crypto Options")
+![uc1](_media/useCases/uc1.png "Crypto Options")
 
 <p>&nbsp;</p>
 
@@ -40,7 +37,7 @@ OptionBlox prioritizes security. Both Ethan and the contract writer will retain 
 <p>&nbsp;</p>
 
 
-## 2. Equity Options
+## Equity Options
 
 #### The Problem 
 Latera is an equity investor who owns 150 THUMB shares. He believes in THUMB and wants to continue holding his investment. However, he’s worried about his THUMB shares losing value in the short term. 
@@ -53,7 +50,7 @@ Latera uses an equity anchor in the Stellar ecosystem to tokenize his shares. He
 
 <p>&nbsp;</p>
 
-![uc2](./static/useCases/uc2.png "Equity Options")
+![uc2](_media/useCases/uc2.png "Equity Options")
 
 <p>&nbsp;</p>
 
@@ -76,7 +73,7 @@ OptionBlox prioritizes security. Latera will retain custody of his shares will n
 <p>&nbsp;</p>
 
 
-## 3. OTC Futures
+## OTC Futures
 
 #### The Problem 
 Adam’s manufacturing business receives revenue in USD and pays expenses in Vietnamese Dong(VND). This creates exchange rate fluctuation risk that Adam wants to hedge against. 
@@ -89,7 +86,7 @@ Adam uses OptionBlox to enter the USD side of the future, using a USD anchored t
 
 <p>&nbsp;</p>
 
-![uc3](./static/useCases/uc3.png "OTC Futures")
+![uc3](_media/useCases/uc3.png "OTC Futures")
 
 <p>&nbsp;</p>
 
@@ -112,7 +109,7 @@ OptionBlox prioritizes security. Adam will retain custody of his assets and will
 <p>&nbsp;</p>
 
 
-## 4. OTC Swaps
+## OTC Swaps
 
 #### The Problem 
 Xiao’s manufacturing business is required to use carbon credits to govern their emissions. Xiao’s business is planning an expansion that will require them to increase emissions for a period, and hold more carbon credits during that period as a result. Xiao is concerned about the market price of carbon credits falling during that period.
@@ -125,7 +122,7 @@ Xiao uses OptionBlox to enter the EUR side of the swap, using a EUR anchored tok
 
 <p>&nbsp;</p>
 
-![uc4](./static/useCases/uc4.png "OTC Swaps")
+![uc4](_media/useCases/uc4.png "OTC Swaps")
 
 <p>&nbsp;</p>
 
