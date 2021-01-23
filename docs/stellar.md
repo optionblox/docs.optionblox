@@ -69,7 +69,7 @@ Here are some non-native assets that are currently anchored by reputable parties
 - ETH: Etherium anchor provided by [Papaya](https://apay.io/in).
 - DSTOQ: Equities anchored on Stellar by [DSTOQ](https://dstoq.com).
 
-More anchors can be viewed on [Steller Expert]( https://stellar.expert/explorer/public/
+More anchors can be viewed on [Steller Expert]( https://stellar.expert/explorer/public/)
 
 As Stellar's network grows, we are confident that more anchors will materialize and expand OptionBlox's functionality.
 

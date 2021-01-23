@@ -27,4 +27,4 @@ Swaps are similar to forwards. The difference is that instead of one exchange of
 #### More Resources
 [Investopedia Article on Derivatives](https://www.investopedia.com/terms/d/derivative.asp)\
 [TastyTrade Derivatives Learning Center](https://tastytrade.thinkific.com/)\
-[Investopedia Article on Options](https://www.investopedia.com/terms/o/option.asp)\
+[Investopedia Article on Options](https://www.investopedia.com/terms/o/option.asp)

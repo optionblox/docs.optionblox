@@ -28,10 +28,12 @@ OptionBlox uses Stellar to make considerable improvements in derivative ecosyste
 ## OptionBlox Pillar 4: Useability
 We’re building OptionBlox for users of all types, from experienced traders to new users in developing countries. As such, UI/UX excellence is paramount for us. However, financial inclusion doesn’t just mean throwing an app at someone in a developing country, and having them figure it out. Education is crucial to truly working towards financial inclusion. Our approach to a user-friendly interface not only involves simple and sleek controls, but also focuses on educating our users about financial derivatives.
 
+---
+
 ## The Problems OptionBlox Solves:
 OptionBlox was created with the intention of tackling two main directives, providing equitable access to financial systems, and driving innovation in a stagnant derivatives industry.
 
-#### Providing Equitable Access to Financial Derivative Markets
+### Providing Equitable Access to Financial Derivative Markets
 Decentralized Ledger Technology enables the disruption of the traditional financial ecosystem that suffers from inefficiency and fails to serve so much of the world. In traditional financial markets, wealth comes with better market access and cheaper pricing. Financial derivative markets are especially prone to this effect; a study published by the IMF showed that more sophisticated parties receive significantly better prices in derivative markets. With OptionBlox, we strive to even the playing field. Whether users are hedge funds or farmers in Venezuela, OptionBlox will enable them to utilize any derivative and give them holistic access to global derivatives markets.\
  \
 Equitable access to efficient derivative markets is crucial to attaining global economic equality and fostering global economic growth. A study published in the Journal of Risk and Financial management demonstrated this. The study found that financial derivatives serve as hedging tools for businesses and help drive market efficiency. We hope that by creating equitable access to financial derivatives, OptionBlox can help foster economic growth across the globe.
@@ -41,7 +43,7 @@ Equitable access to efficient derivative markets is crucial to attaining global 
 > Citation: IMF. “Discriminatory Pricing of Over-the-Counter Derivatives.” 2019. IMF. DOI = https://www.elibrary.imf.org/view/IMF001/25871-9781498303774/25871-9781498303774/25871-9781498303774_A001.xml?redirect=true
  
  
-#### Disrupting the Incumbent Derivative Ecosystem
+### Disrupting the Incumbent Derivative Ecosystem
 The current derivative ecosystem is inefficient. Writing and executing contracts costs 1000X more than what is technologically possible. The incumbent ecosystem is held back by contract intermediaries that add unnecessary friction. In the incumbent ecosystem, a single derivative contract involves not only the contract parties, but also a derivatives exchange, a central clearing party, and a derivatives broker. These contract intermediaries exist to lower counterparty risk and match buyers and sellers. OptionBlox uses Stellar to accomplish these directives, removing the need for intermediaries. This significantly lowers ecosystem costs and increases efficiency. 
 
 

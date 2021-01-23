@@ -81,7 +81,7 @@ The settlement period the option expires in for that month. For example, if the 
 - X(Eleventh character of the option token name)
 P or C based on whether the option is a put or call. For example, if the option is a call contract, this character is "C".
 
-### txFunction Derivatives Protocols:
+### txFunction Protocols:
 OptionBlox features a range of tradeable decentralized derivative products. These are enabled using TSS txFunctions. Their code is available on our [GitHub](https://github.com/optionblox/optionblox-contracts). This section provides a high-level description of OptionBlox’s derivative protocols.
 
 #### Covered Options
@@ -91,13 +91,13 @@ A variety of protocol tokens, accounts, and txFunctions make up the OptionBlox c
 1. *Option Token*\
 The option token represents ownership of the option contract. It is issued to the contract writer, and they can then sell it on the DEX or any other cryptocurrency exchange. The option buyer uses this token to execute the option contract.
 
-2. *Option Exercise Token*/
+2. *Option Exercise Token*\
 The option exercise token is used by the protocol to execute the option contract. Users do not interact with the token of their own volition; it is purely a protocol token. The exercise token’s name is the same as the derivative token’s name.
 
-3. *Underlying Asset Tokens*/
+3. *Underlying Asset Tokens*\
 These are the tokens that represent the option contract's underlying asset. The contract writer provides them to write call options and the Write txFunction locks them in the writer's holding account. In the case of put options, the option owner/executor uses them to purchase the writer's counter asset.
 
-4. *Counter Asset Tokens*/
+4. *Counter Asset Tokens*\
 These are the tokens that represent the option contract's counter asset. The contract writer provides them to write put options and the Write txFunction locks them in the writer's holding account. In the case of call options, the option owner/executor uses them to purchase the writer's counter asset.
 
 ##### Accounts Involved
@@ -107,7 +107,7 @@ This account holds the writer's underlying or counter asset tokens. It is contro
 2. *Option Token Issuing Account*\
 This account issues the derivative token that represents ownership of options contracts. It also stores contract details in its data entries. The Write txFunction controls it.
 
-3. *Exercise Token Issuing Account*/
+3. *Exercise Token Issuing Account*\
 This account issues the derivative exercise token used to execute options contracts. The Write txFunction and the Execute txFunction control it.
 
 ##### Covered Options txFunctions
@@ -117,31 +117,31 @@ Intakes contract parameters from the option contract writer, sets up the writer'
 Intakes execution request, derivative tokens, and the required underlying(for puts) or counter(for calls) asset tokens from the option contract owner. Then sends the underlying(for calls) or counter(for puts) asset tokens to the contract owner.
 3. *Settle txFunction*\
 Sends the proceeds from execution to the option contract writer and deletes the now void derivative and derivative exercise tokens.
-4. *Close txFunction*\ 
+4. *Close txFunction*\
 Called after option contract expiration. Returns the committed underlying or counter asset tokens to the contract writer and deletes the derivative tokens, exercise tokens, and holding account. This contract also performs the Settle txFunction's operations if the Settle txFunction was not already called.
 5. *earlyClose txFunction*\
 Called when an option contract is exercised before the expiration date or when the contract writer covers their option by buying an identical option token. Returns the writer's committed underlying if the option was covered, deletes the now void derivative and derivative exercise tokens, and deletes the writer's holding account if the option was fully exercised or covered. This contract also performs the Settle txFunction's operations if the Settle txFunction was not already called.
-##### Covered Options Protocol Diagraom
+##### Covered Options Protocol Diagram
 Below is a basic model showing the writing, sale, and exercise processes of a covered call with an underlying of 1 Bitcoin(BTC) and a strike price of 1000 Lumens(XLM).
 
-![covered](./static/whitepaper/coveredOptionsDiagram.png "Covered Options")
+![covered](_media/whitepaper/coveredOptionsDiagram.png "Covered Options")
 
 ##### Uncovered Options
 OptionBlox uncovered options are similar to OptionBlox covered options. The key differences are that the holding account also serves as a margin account for the seller and the execution process differs slightly. This protocol uses the same accounts and tokens as the covered options protocol. The txFunctions used in this protocol perform the same functions as those involved in the covered call protocol, but their operations differ.
 
 ##### Uncovered Options Protocol Diagram
 Below is a model showing the writing, sale, and execution process of an uncovered call. The call contract's underlying is 1 BTC, its strike price is 100 XLM, the initial margin requirement is 15%, and the minimum margin requirement is 10%.
-![uncoverd](./static/whitepaper/uncoveredOptionsDiagram.png "Uncovered Options")
+![uncoverd](_media/whitepaper/uncoveredOptionsDiagram.png "Uncovered Options")
 
 ##### Futures
-OptionBlox’s futures protocol also operates using protocol tokens, accounts, and TSS txFunctions. Instead of using derivative tokens, the futures protocol issues tokens for the underlying asset, so a party who enters a contract with an underlying of 100 XLM would receive 100 XLMFUTURE tokens. Contract parties exchange these tokens to enter futures contracts; the price they exchange tokens at represents the future contract's spot rate. OptionBlox settles futures daily using a [mark-to-market](https://www.cmegroup.com/education/courses/introduction-to-futures/mark-to-market.html] system. The txFunctions for this protocol are still under development. The OptionBlox team will add more details on the Futures protocol to this whitepaper as it gets closer to launch.
+OptionBlox’s futures protocol also operates using protocol tokens, accounts, and TSS txFunctions. Instead of using derivative tokens, the futures protocol issues tokens for the underlying asset, so a party who enters a contract with an underlying of 100 XLM would receive 100 XLMFUTURE tokens. Contract parties exchange these tokens to enter futures contracts; the price they exchange tokens at represents the future contract's spot rate. OptionBlox settles futures daily using a [mark-to-market](https://www.cmegroup.com/education/courses/introduction-to-futures/mark-to-market.html) system. The txFunctions for this protocol are still under development. The OptionBlox team will add more details on the Futures protocol to this whitepaper as it gets closer to launch.
 
 ##### Forwards and Swaps
 The OptionBlox team has internal forwards and swaps protocols we plan to implement in the future. They are modified versions of the OptionBlox futures protocol. We will add details regarding these protocols to this whitepaper once the protocol gets closer to launch
 
-##### Liquidation Prodecures
+##### Liquidation Procedures
 OptionBlox uncovered options require position liquidation when the position holders become delinquent in meeting their margin requirements or fail to provide the necessary underlying to complete contract settlement. In these situations, the protocol attempts to liquidate positions on the Stellar DEX. However, if low volume makes this impossible, OptionBlox uses a TSS managed liquidity pool to liquidate the contracts. 
 
-![uncoveredLqd](./static/whitepaper/uncoveredOptionsLiquidation.png "Insufficient Margin Liquidation (option)")
+![uncoveredLqd](_media/whitepaper/uncoveredOptionsLiquidation.png "Insufficient Margin Liquidation (option)")
 
 The OptionBlox liquidity pool is made up of user-provided funds and managed by TSS txFunctions. Users receive pool tokens in exchange for the funds they contribute. The tokens represent their pool contribution and govern the percentage of liquidation profits they receive. Because of the margin requirements for OptionBlox contracts, it will never be in the position holder's economic interest to allow liquidation, and there will always be an economic incentive to liquidate the position.
