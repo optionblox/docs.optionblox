@@ -7,7 +7,7 @@ As you can probably tell, this docs page is currently under development.
 
 Please view our OptionBlox's Stellar Seed Fund Submission: https://communityfund.stellar.org/seed-fund#/entry/1e354b3b328209c85dc1d978cb1ea527d5df60dc04d8ae794f04517bea01d852
 
-### How to usReach 
+### How to Reach Us
 
 If you would like to get involved, or have questions, please reach out to us directly.
 
