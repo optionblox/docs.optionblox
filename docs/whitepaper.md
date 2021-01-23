@@ -1,4 +1,3 @@
-![Logo Image](./static/logo/obx.png)
 # OptionBlox
 ## A Decentralized Derivatives Solution Built on Stellar
 
@@ -28,7 +27,7 @@ The OptionBlox protocol serves as a tier-3 blockchain app, a layer between Optio
 
  ![alt text](https://raw.githubusercontent.com/markuspluna/OBXwhitepaper/master/photos/High-Level%20OBX%20protocol.png "OBX Protocol")
 
-### Option Contract Design
+## Option Contract Design
 
 #### Contract Terms
 OptionBlox option contracts are all standard american style options. This means they can be executed at any time until the expiration date. Currently OptionBlox only offers covered option contracts, this means that the full underlying asset balance associated with the option contract must be provided to write the option. However, the OptionBlox team has a uncovered option protocol that we plan on rolling out in the future. This protocol would allow users to write option contracts by only providing a portion of the associated underlying asset. 
@@ -80,10 +79,10 @@ The settlement period the option expires in for that month. For example, if the 
 - X(Eleventh character of the option token name)
 P or C based on whether the option is a put or call. For example, if the option is a call contract the character will be "C".
 
-### txFunction DerivativesProtocols:
+## txFunction DerivativesProtocols:
 OptionBlox features a range of tradeable decentralized derivative products. These are enabled using a variety of TSS txFunctions. Their code is available on our [GitHub](https://github.com/optionblox/optionblox-contracts). In this section we will give a high level overview of how their protocol's function without going in-depth on the ledger transactions involved.
 
-#### Covered Options
+## Covered Options
 OptionBlox covered options are created using a network of accounts and TSS txFunctions.
 
 ##### Tokens Involved
@@ -123,16 +122,16 @@ Called in the case where an option contract is exercised before the expiration d
 ##### Covered Options Protocol Diagraom
 Below is a basic model showing the writing, sale, and exercise processes of a covered call with an underlying of 1 Bitcoin(BTC), and a strike price of 1000 Lumens(XLM).
 
-![covered](./static/whitepaper/coveredOptionsDiagram.png "Covered Options")
+![covered](_media/whitepaper/coveredOptionsDiagram.png "Covered Options")
 
-##### Uncovered Options
+## Uncovered Options
 OptionBlox uncovered options are similar to OptionBlox covered options. The key differences are the holding account also serves as a margin account for the seller and the execution process differs slightly. This protocol uses the same accounts and tokens as the covered options protocol. The txFunctions that power this protocol perform the same functions as the ones involved in the covered call protocol, the txFunctions just have different operations.
 
 ##### Uncovered Options Protocol Diagram
 Below is a model showing the writing, sale, and execution process of an uncovered call. The call contract's underlying is 1 BTC, its strike price is 100 XLM, the initial margin requirement is 15%, and the minimum margin requirement is 10%.
-![uncoverd](./static/whitepaper/uncoveredOptionsDiagram.png "Uncovered Options")
+![uncoverd](_media/whitepaper/uncoveredOptionsDiagram.png "Uncovered Options")
 
-##### Futures
+## Futures
 OptionBlox futures also operates using a network of accounts and TSS contracts. Instead of using derivative tokens, the futures protocol issues tokens for the underlying asset, so a party who enters a contract with an underlying of 100 XLM would receive 100 XLMFUTURE tokens. Contract parties exchange these tokens to enter a futures contract; the price they exchanged tokens at represents the spot rate the future is entered at. OptionBlox settles futures daily using a [mark-to-market](https://www.cmegroup.com/education/courses/introduction-to-futures/mark-to-market.html] system. The txFunctions for this protocol are not finalized yet so we will add more details on this protocol to this whitepaper as it gets closer to launch.
 
 ##### Forwards
@@ -144,7 +143,7 @@ We have an internal swaps protocol we plan to implement in the future. It is a m
 ##### Liquidation Prodecures
 OptionBlox uncovered options require position liquidation when the position holders become delinquent in meeting their margin requirements or fail to provide the necessary underlying to complete contract settlement. In these situations, the protocol will attempt to liquidate positions on the Stellar DEX. However, if low volume makes this impossible, OptionBlox uses a TSS managed liquidity pool to liquidate the contracts. 
 
-![uncoveredLqd](./static/whitepaper/uncoveredOptionsLiquidation.png "Insufficient Margin Liquidation (option)")
+![uncoveredLqd](_media/whitepaper/uncoveredOptionsLiquidation.png "Insufficient Margin Liquidation (option)")
 
 The OptionBlox liquidity pool is made up of user-provided funds and managed by a TSS contract. Users will receive tokens in exchange for the funds they contribute, the tokens represent their contribution and govern the percentage of liquidation profits they receive. Because of the margin requirements for OptionBlox contracts, it will never be in the position holder's economic interest to allow liquidation, and there will always be an economic incentive to liquidate the position.
 

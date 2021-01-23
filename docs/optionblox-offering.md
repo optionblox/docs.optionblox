@@ -1,9 +1,8 @@
-[<img src = "./static/logo/obx.png">](https://www.optionblox.com/)
 # OptionBlox's Offering
 
 OptionBlox improves the financial derivatives ecosystem by using Stellar-based derivatives to increase ecosystem efficiency, accessibility, and flexibility. Turing Signing Server smart contracts power the OptionBlox protocol, ensuring the protocol remains secure, decentralized, and efficient. Combining the efficiencies of Stellar and decentralized smart contracts creates the four pillars of OptionBlox's offering:
 
-### OptionBlox Pillar 1: Efficiency  
+## OptionBlox Pillar 1: Efficiency  
 The incumbent derivatives market suffers from a large amount of friction. It requires market intermediaries to provide access to the market, facilitate trades, and lower counterparty risk. These additional parties cause inefficiencies, which creates costs that get passed on to investors. By processing derivatives on Stellar, OptionBlox eliminates the need for market intermediaries. 
  
 A research paper that covered Stellar-based financial derivatives measured the monetary impact of their efficiency improvements. The paper delved into efficiency gains in both transaction processing and data accessibility. Data accessibility is a huge source of cost and inefficiency in the traditional derivatives ecosystem. Additionally, the paper measured costs associated with Ethereum based financial derivatives to demonstrate Stellar’s efficiency advantage in the DeFi ecosystem. The tables below show the results of the research paper.\
@@ -13,7 +12,7 @@ A research paper that covered Stellar-based financial derivatives measured the m
 > Citation: Paulson-Luna, Riley. "The Financial Derivatives Ecosystem is Old - Decentralized Ledger Technology is its Fountain of Youth". 2020. ASSE 2020.DOI = https://dl.acm.org/doi/abs/10.1145/3399871.3399904
 
  
-### OptionBlox Pillar 2: Flexibility  
+## OptionBlox Pillar 2: Flexibility  
 OptionBlox provides unparalleled flexibility, allowing users to accomplish any derivative use case. If OptionBlox’s standardized derivatives do not meet users' needs, Optionblox enables them to write OTC derivatives with custom contract specifications. Additionally, derivatives written with OptionBlox use Stellar’s [Anchor](https://www.stellar.org/developers/guides/concepts/assets.html) system to manage a contract's underlying assets. Since the Anchor system supports any asset, our contracts also support any asset.
  
 - *Tokenized Derivatives*:  
@@ -23,13 +22,13 @@ OptionBlox also uses the Anchor system to tokenize derivative contracts. Tokeniz
  ![alt text](https://raw.githubusercontent.com/markuspluna/OBXwhitepaper/master/photos/OBX%20flexibility.png "Flexibility Graphic")
 
  
-### OptionBlox Pillar 3: Accessibility
+## OptionBlox Pillar 3: Accessibility
 OptionBlox uses Stellar to make considerable improvements in derivative ecosystem accessibility. The decentralized nature of our system means OptionBlox is accessible to anyone with an internet connection. This is a substantial improvement over the derivative ecosystem's current state, where only a small portion of the world has efficient ecosystem access. The traditional derivative ecosystem’s dependence on central parties makes it impossible for it to serve a broader market. Since OptionBlox uses Stellar to facilitate derivatives instead of central parties, it does not suffer from these limitations and can provide an open-access ecosystem. 
  
-### OptionBlox Pillar 4: Useability
+## OptionBlox Pillar 4: Useability
 We’re building OptionBlox for users of all types, from experienced traders to new users in developing countries. As such, UI/UX excellence is paramount for us. However, financial inclusion doesn’t just mean throwing an app at someone in a developing country, and having them figure it out. Education is crucial to truly working towards financial inclusion. Our approach to a user-friendly interface not only involves simple and sleek controls, but also focuses on educating our users about financial derivatives.
 
-### The Problems OptionBlox Solves:
+## The Problems OptionBlox Solves:
 OptionBlox was created with the intention of tackling two main directives, providing equitable access to financial systems, and driving innovation in a stagnant derivatives industry.
 
 #### Providing Equitable Access to Financial Derivative Markets

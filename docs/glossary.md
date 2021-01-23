@@ -1,4 +1,3 @@
-[<img src = "./static/logo/obx.png">](https://www.optionblox.com/)
 # Glossary
 A list of terms we uncommon frequently use throughout our documentation:  
 - *Smart Contract:* A protocol to digitally facilitate, verify, or enforce the performance of a contract.  

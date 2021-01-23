@@ -1,4 +1,3 @@
-[<img src = "./static/logo/obx.png">](https://www.optionblox.com/)
 # Overview of Financial Derivatives
 Here we will provide a brief overview of financial derivatives for those who may not be familiar with them. A financial derivative is a financial contract between two parties. Its value is based on an agreed-upon asset or a set of assets called the underlying assets. The most common forms of financial derivatives are futures, options, forwards, and swaps.
 #### Futures
