@@ -19,9 +19,9 @@ Please view OptionBlox's Stellar Seed Fund Submission: https://communityfund.ste
    - Launch Closed Alpha for Uncovered Options and Futures
    - Launch Closed Alpha for OTC contract development tool
 
-### Contribute
+### How to Reach Us
 
-If you would like to help, please reach out to us directly.
+If you would like to get involved, or have questions, please reach out to us directly.
 
 [Email](https://www.optionblox.com/contact)
 
