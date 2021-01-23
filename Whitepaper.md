@@ -10,278 +10,141 @@ Alexander Mootz: alex@optionblox.com
 
 ### Abstract
 
-OptionBlox is a protocol for writing, trading, and exercising financial derivatives on Stellar's decentralized ledger. OptionBlox uses a unique smart contract system to make these derivatives trust-free as well as ledger-based. Doing so eliminates the need for market intermediaries- increasing ecosystem efficiency, flexibility, and accessibility. The OptionBlox protocol supports derivatives involving any asset pair, charges less than 1 cent per contract, and can be used by anyone in the world. Additionally, OptionBlox tokenizes derivative contracts, allowing them to be traded on any centralized or decentralized exchange, and even stored offline. Overall, OptionBlox makes vast improvements on incumbent derivative processing solutions and enables equitable access to a flexible, efficient derivatives market built on Stellar. 
-
-> **Note:** *The OptionBlox protocol refers to an umbrella of protocols that process different derivative types. Protocols vary slightly based on the derivative type they support.*
+This whitepaper covers some of the technical details involved in OptionBlox's decentralized derivative protocols. These protocols are made up of a network of protocol tokens, accounts, and TSS(Turing Signing Server) txFunctions. This whitepaper will be continually updated as details regarding OptionBlox's core protocols change. Currently it covers the covered and uncovered option protocols along with the specifications of option contracts written using OptionBlox. The OptionBlox team plans to add details regrading our futures, swaps, and forwards protocols once those protocols get closer to launch.
 
 <p>&nbsp;</p>
 
 ### Table of Contents:
 - [Introduction](#introduction)
-- [Explanation of Derivatives](#derivatives)
-- [Value Proposition](#value-proposition)
-- [Use Cases](#use-cases)
-- [Stellar - OptionBlox's Decentralized Ledger](#stellar---optionbloxs-chosen-decentralized-ledger)
-- [OptionBlox's Derivative Protocols](#optionbloxs-derivative-protocols)
-- [Security Measures](#security)
-- [Roadmap](#roadmap)
-- [Glossary](#glossary)
+- [Contract Design](#Option-Contract-Design)
+- [OptionBlox's Derivative Protocols](#txfunction-derivative-protocols)
 
 <p>&nbsp;</p>
 
 ### Introduction:
+The OptionBlox protocol serves as a tier-3 blockchain app, a layer between OptionBlox web-app users and the Stellar ledger. Users link their wallets to OptionBlox's web-app which takes user inputs and communicates them to the OptionBlox protocol. The OptionBlox protocol uses TSS(Turing Signing Server) txFunctions to build Stellar transactions that write, execute, or cover derivatives for users. Users approve these transactions with their wallet and receive the result of their transaction, whether that’s derivative tokens, collateral deposits, or underlying assets.
 
-#### Derivatives:
+#### High-Level Protocol Diagram
 
-A derivative is a financial contract between two parties. Its value is based on an agreed-upon asset or a set of assets. The most common forms of financial derivatives are futures, options, forwards, and swaps.
+ ![alt text](https://raw.githubusercontent.com/markuspluna/OBXwhitepaper/master/photos/High-Level%20OBX%20protocol.png "OBX Protocol")
 
-- *Futures*:   
-Futures are contracts between two parties to buy/sell an agreed-upon quantity of an asset, called the underlying asset, at a set price at an established future time. Futures are commonly used to hedge against price movement by the underlying asset, as a means to increase leverage, or as a means of gaining exposure to rates. Futures are typically settled daily, so at the end of each day, an investor's profits or losses are realized.
+### Option Contract Design
 
-- *Options*:   
-Options are contracts between two parties, a writer and a buyer. The contract gives the buyer the option, but not the obligation, to buy or sell an asset, called the underlying asset, at an agreed-upon "strike price" until the option expires. If the buyer decides to exercise this right, the option writer would buy or sell the underlying asset. Options can be either puts or calls. A call option allows its owner to buy the underlying asset at the strike price, and a put option allows its owner to sell the underlying asset at the strike price. Common uses of options are hedging, increasing leverage, and income generation.
+#### Contract Terms
+OptionBlox option contracts are all standard american style options. This means they can be executed at any time until the expiration date. Currently OptionBlox only offers covered option contracts, this means that the full underlying asset balance associated with the option contract must be provided to write the option. However, the OptionBlox team has a uncovered option protocol that we plan on rolling out in the future. This protocol would allow users to write option contracts by only providing a portion of the associated underlying asset. 
 
-- *Forwards*:  
-Forwards are similar to futures. The main difference is that they are not settled until the expiration date. They are typically highly specified to the involved parties' needs.
+#### Contract Sizing
+Contract sizes are standardized by option type. This means that options and futures contracts have uniform underlying amounts. For example, all ETH-USD options and futures will have an underlying of 1 ETH. This standardization helps maintain contract volume. Option contract sizes are stored as a data entry in the option token's issuing account. They are also displayed on the OptionBlox web-apps market page and can be pulled from OptionBlox's api endpoints. Contract sizes are will be set to keep strike prices within a 3 digit range for standard options and a 4 digit range for options with USD as their counter asset. Contract sizes can be adjusted if the underlying assets value changes to no longer allow for the desired strike price digit ranges.
 
-- *Swaps*:  
-Swaps are similar to forwards. The difference is that instead of one exchange of assets at the expiration date, the parties swap assets twice. Once at the beginning of the contract and once at the end. These exchanges are referred to as the "near leg" and the "far leg". Like forwards, these contracts are typically highly specified to the involved parties' needs.
+#### Partial Contracts
+Tokenizing derivatives allows OptionBlox users to write partial derivative contracts. Users can write option contracts with fractions of the contract underlying assets and will be sent an equivalent proportion of the contract token(s). This is crucial to maintain standardized contract sizes while allowing users with less capital to still utilize the derivatives ecosystem.
 
-<p>&nbsp;</p>
+For example, say the contract size for OptionBlox ETH-USD options is 1 ETH, this means that the underlying associated with these contracts is 1 ETH and users need to provide 1 ETH as collateral to write an ETH-USD option. If a user can only provide .5 ETH, our partial derivative capability allows them to write half an option contract. They will provide .5 ETH as collateral and receive .5 ETH-USD option tokens to sell. 
 
-#### Value Proposition:  
+### Derivative Tokens
+Derivative contracts written with the OptionBlox protocol are tokenized. This is critical to ensure they can be traded on any cryptocurrency exchange, they can be stored in any wallet, and the efficacy of the execution txFunction.
 
-##### Increased Efficiency  
-The incumbent derivatives market suffers from a large amount of friction. It requires market intermediaries to provide access to the market, facilitate trades, and lower counterparty risk. These additional parties cause inefficiency which creates costs that get passed on to investors. By facilitating derivatives on Stellar's decentralized network, OptionBlox eliminates the need for market intermediaries. The diagram below illustrate the efficiency gained from eliminating market intermediaries by comparing the post-trade process in the traditional derivatives ecosystem with the post-trade process in the OptionBlox derivatives ecosystem.
+#### Option Token Naming Conventions:
+The OptionBlox protocol uses 11 character names for it's option tokens. The token names convey the assets involved in the option, the option's strike price, the option's expiration date, and whether the option is a put or call. More information, such as contract size, is stored in the token's issuing account.
+##### Standard Option Token Naming Convention
+For most options the naming convention will be the following:
+- XXX(First, Second, and Third characters of the option token name)\
+The last three numbers of the strike price. For example, if the contract strike price is 125 these characters will be "125". Strike prices should not be more than three numbers and should not involve decimals. Contract size will be adjusted to ensure that these strike price characteristics remain true.
+- XX(Fourth and Fifth characters of the option token name)\
+The first two characters of the underlying asset token name. For example, if the contract underlying is XLM, these characters will be "XL".
+- XX(Sixth and Seventh chacters of the option token name)\
+The first two characters of the counter asset token name. For example, if the counter asset is BTC, these characters will be "BT".
+- XX(Eigth and Ninth characters of the option token name)\
+Month the option expires in. For example, if the option contract expires in July these characters will be "07".
+- X(Tenth characater of the option token name)\
+Settlement period the option expires in. For example, if the option contract expires on July 1st 2020, the first settlement period for outstanding options for the month of July, this character will be "0". Unfortunatley we cannot represent an actual day here due to character limits. So we represent the settlement period instead, the first settlement period of a month will be the first date in the month where options will settle, the second period will be the second date, and so on and so forth. Below is a table that exhibits this. Referring to the table, once 07/01/21 expires, 07/01/23 will be issued and its settlment period code will be 0.  
 
-**Post-Trade processing comparison**\
-![post-trade](./static/whitepaper/postTradeProcessingComparison.jpg "Post-Trade Processing Comparison")
-> Citation: ISDA. "The Future of Derivatives Processing and Market Infrastructure". ISDA Whitepaper. 2016.
+|Date:|07/01/21|07/07/21|07/14/21|07/21/21|07/28/21|07/01/22|07/07/22|07/14/22|07/21/22|07/28/22|
+|---|---|---|---|---|---|---|---|---|---|---|
+|Settlement Period:|0|1|2|3|4|5|6|7|8|9|
+- X(Eleventh character of the option token name)\
+P or C based on whether the option is a put or a call. For example, if the option is a put the character will be "P".
 
+To bring it all together the name of a XLM-EURT Call Option with a contract size of 1000 XLM and a strike price of 350 expiring on 7/14/2021 would be XLEU350072C
 
-A research paper that covered Stellar-based financial derivatives measured the monetary impact of the increased efficiency that Stellar-based derivatives provide. To measure the costs that get passed to users as a result of inefficiency in the traditional derivatives ecosystem, the paper measured central parties' revenue-per-contract. To measure the costs associated with Stellar-based derivatives, the researchers processed derivatives on-ledger and measured the network fees. Their findings are summarized in the tables below.\
- \
-We expect these gains in efficiency to exponentially increase when it comes to OTC(Over-The-Counter) derivatives. OTC contracts are highly specified, complicated, and can carry a large amount of counterparty risk. Traditionally, a party that wants to enter an OTC contract has to find both a counterparty and a facilitating party. OptionBlox's protocol eliminates the need for the facilitating party and makes it easier to find a counterparty by improving ecosystem accessibility. As a result, OptionBlox significantly increases OTC derivative efficiency and accessibility.\
- \
-The aformentioned research paper also discussed data access fees that derivative users pay to central parties in the traditional derivative ecosystem. These fees are another example of inefficiency and friction in the traditional derivative ecosystem. In a Stellar-based derivative ecosystem, all data would be public since all transactions are recorded on-ledger. This would eliminate a significant source of cost and inefficiency.\
-\
-OptionBlox also holds efficiency advantages over other decentralized derivative products. Most of these are built on Ethereum, which is a fundamentally less efficient decentralized ledger than Stellar.\
-\
-Tables exhibiting the economic impact of the aformentioned efficiency increases are exhibited below:
+##### Naming Convention for Options with USD as the counter asset
+Through the OptionBlox web-app users are encouraged to write/buy options with USD as the counter asset. This is to concentrate market volume into asset pairs that include USD. Since options that have USD as a counter asset will be much more common as a result of this measure, we use a slightly different naming convention for options with USD as the counter  asset.
+- XXXX(First four characters of the option token name)
+Last four digits of option contract's strike price. For example, if the strike price is 1245 these characters will be "1245".
+- XXX(Fifth, Sixth, and Seventh characters of the option token name)
+First three characters of the underlying asset token's name. For example, if the underlying asset token is ETH, these characters will be "ETH". 
+- XX(Eight and Ninth characters of the option token name)
+Month the option expires in. For example, if the option contract expires in november these characters will be "11".
+- X(Tenth character of the option token name)
+The settlement period the option expires in for that month. For example, if the option contract expires on November 14th 2022, the seventh settlement period for outstanding options for the month of November, this character will be "7". For a further explanation on settlement period see the preceeding section.
+- X(Eleventh character of the option token name)
+P or C based on whether the option is a put or call. For example, if the option is a call contract the character will be "C".
 
+### txFunction DerivativesProtocols:
+OptionBlox features a range of tradeable decentralized derivative products. These are enabled using a variety of TSS txFunctions. Their code is available on our [GitHub](https://github.com/optionblox/optionblox-contracts). In this section we will give a high level overview of how their protocol's function without going in-depth on the ledger transactions involved.
 
-**Ecosystem Fees Associated with Stellar Based Derivatives**
-|Writing and Executing Options|Writing and Executing Futures|Writing and Executing Swaps|Trading all Derivatives|
-|---|---|---|---|
-|$0.000261|$0.000319|$0.0004234|$0.000029|
+#### Covered Options
+OptionBlox covered options are created using a network of accounts and TSS txFunctions.
 
-**Ecosystem Fees Associated with the Traditional Derivative Ecosystem**
-|CBOE Option Revenue Per Contract|CBOE Futures Revenue Per Contract|CME Average Revenue Per Contract|
-|---|---|---|
-|$0.235|$1.759|$0.725|
+##### Tokens Involved
+1. *Option Token*\
+The option token represents ownership of the option contract. It is issued to the contract writer, they can then sell it on the DEX or any other cryptocurrency exchange. The option buyer uses this token to execute the option contract.
 
-**Live Data Fees in the Traditional Derivative Ecosystem**
-|CBOE Live Data Fees|CME Live Data Fees|
-|---|---|
-|$105/month|Individual - $15,000
-||Enterprise - $100,000|
+2. *Option Exercise Token*/
+The option exercise token is used by the protocol to execute the option contract. It is purely a protocol token and users will not interact with it on their own volition. The exercise tokens name is the same as the derivative tokens name.
 
-**Ecosystem Fees Associated with Ethereum Based Derivatives**
-|Writing and Executing Derivatives|Trading all Derivatives|
-|---|---|
-|$5.50+|$1.10+|
+3. *Underlying Asset Tokens*/
+Tokens that represent the option contract's underlying asset. These are locked in the writer's holding account to write call options.
 
-> Citation: Paulson-Luna, Riley. "The Financial Derivatives Ecosystem is Old - Decentralized Ledger Technology is its Fountain of Youth". 2020. ASSE 2020. DOI [Link](https://dl.acm.org/doi/abs/10.1145/3399871.3399904)
+4. *Counter Asset Tokens*/
+Tokens that are used to purchase the option contract's underlying asset during the contract execution. These are locked in the writer's holding account to write put options.
 
-##### Market Accessibility  
-OptionBlox uses DLT(Decentralized Ledger Technology) to make improvements in derivative ecosystem accessibility. The decentralized nature of OptionBlox means it is accessible to anyone with an internet connection. This is a huge improvement over the current state of the derivatives ecosystem where only a minute portion of the world has efficient ecosystem access. The incumbent derivative ecosystem’s dependence on central parties makes it impossible for it to serve a wider market. Since OptionBlox uses DLT to facilitate derivatives instead of central parties, it does not suffer from these limitations. Accessibility is core to OptionBlox’s offering, we want the protocol to enable equitable derivative ecosystem access. With OptionBlox’s innovation in accessibility, flexibility, and efficiency we believe it will do so. 
+##### Accounts Involved
+1. *Writer Holding Account*\
+This account holds the writer's underlying or counter assets. It is controlled by the Write txFunction, the Execute txFunction, the Settle txFunction, the earlyCLose txFunction, and the Close txFunction. The writer has no control over this account until the option contract either expires or is covered. 
 
-##### Flexibility  
-OptionBlox provides unparalleled flexibility, allowing users to accomplish any derivative use case. If our standardized derivatives do not meet a user's needs they can easily write OTC derivatives with custom contract specifications using OptionBlox. Additionally, derivatives written with OptionBlox use Stellar’s [Anchor](https://www.stellar.org/developers/guides/concepts/assets.html) system to manage contract underlying assets. Since the Anchor system can support any asset, OptionBlox contracts can be written with any underlying asset.
+2. *Option Token Issuing Account*\
+This account issues the derivative token that represents ownership of the option contract. It also stores contract details in it's data entries. It is contolled by the Write txFunction.
 
-- *Tokenized Derivatives*:  
-OptionBlox also uses the Anchor system to tokenize derivative contracts. Tokenized derivatives are essential in the decentralized ledger technology space. Tokenization allows OptionBlox derivatives to be traded on any cryptocurrency exchange and stored anywhere. This flexibility is essential due to the fragmentation of the DLT space. It also serves to further decentralize OptionBlox. In addition to improving trading and storage flexibility, tokenization allows users to write partial derivatives, enabling users with different levels of wealth to take advantage of derivatives while still allowing us to retain standardized derivative sizes. For example, default OptionBlox Ethereum options are standardized to have an underlying of 1 ETH to preserve contract volume, if a user wants to write this option but cannot fund the entire 1 ETH underlying, OptionBlox's partial derivative capability will allow them to write a fractional derivative. They will provide a fraction of 1 ETH as contract collateral and will receive a proportional fraction of an ETH option token. 
+3. *Exercise Token Issuing Account*/
+This account issues the derivative exercise token that is used to execute the option. It is controlled by the Write txFunction and the Execute txFunction.
 
-<p>&nbsp;</p>
-
-#### [Use Cases](https://github.com/optionblox/optionblox.github.io/blob/whitepaper/Use%20Cases.md)
-
-<p>&nbsp;</p>
-
-#### What Decentralized Ledger Technology Provides:
-
-Using decentralized ledger technology to facilitate derivatives allows us to make OptionBlox more flexible and efficient than the incumbent derivative processing system, while still retaining a similar level of security. A decentralized system provides:
-
-- *Proof of ownership*:  
-The public and collective nature of a decentralized ledger prevents individuals from misrepresenting what they own on the ledger, including assets and transactions. This allows OptionBlox to verify asset ownership, and to ensure derivatives are set up correctly. As a result, participants' need for middlemen to handle counterparty risk is greatly reduced.
-
-- *Accessibility*:   
-Decentralized networks are open ecosystems. They are run by a network of nodes situated around the globe, and any individual can connect to the network or become one of the nodes. On top of this, Stellar has a decentralized exchange built into its ledger. The open nature of this system means that consumers no longer require a third party to host an electronic exchange and provide them access to it. Additionally, it opens the market to new parties that find it difficult to access incumbent markets. Finally, open-market access, combined with the OptionBlox's flexibility, allows consumers to write new kinds of derivatives, potentially creating new markets.
-
-- *One source of truth*:  
-The unquestionable nature of a decentralized network, combined with its accessibility means participants don't need to pay for or share market data to maintain an accurate source of information. This removes another source of friction and cost.
-
-<p>&nbsp;</p>
-
-#### Stellar - OptionBlox's Chosen Decentralized Ledger:
-
-OptionBlox uses Stellar's decentralized ledger to support its protocol.
-
-In Stellar’s words:  
-
-> “Fundamentally, Stellar is a system for tracking ownership. It uses an accounting ledger, shared across a network of independent computers, to store two important things for every account holder: what they own (their account balances) and what they want to do with what they own (operations on those balances, like buy or sell offers).\
-The computers that run Stellar and publish the ledger are called nodes. They systematically validate the ledger’s contents so it’s always consistent across the network. For example, when you send someone a dollar on a Stellar-built app, the nodes check that the correct balances were debited and credited, and each node makes sure every other node sees and agrees to the transaction.”
-
-Stellar's open network allows anyone to submit a transaction to change the ledger. However, the transaction will only change the ledger after the nodes agree it is valid. In OptionBlox's case, before a derivative is exercised or traded, the local network of nodes agree upon the validity of the transaction. This prevents parties with ill intentions from engaging in illicit behavior on the network. Therefore, Stellar provides a secure financial network that has one source of truth and can be instantly accessed and modified by anyone in the world.  
-
-For more general information visit: [Stellar's Website](https://www.stellar.org/developers/guides/walkthroughs/stellar-smart-contracts.html).  
-For more information on how the nodes validate transactions see: [Stellar Consensus Protocol](https://www.stellar.org/developers/guides/concepts/scp.html).  
-For more information on how OptionBlox interacts with Stellar’s network visit: [Network Overview](https://www.stellar.org/developers/guides/get-started/index.html).
-
-##### Building on Stellar:
-
-Stellar’s focus on financial applications has made it the ideal network to develop OptionBlox on.\
-Characteristics of the Stellar network crucial to OptionBlox:
-- *Efficiency*:  
-Stellar’s network is efficient, having both fast transaction times and low fees. This is essential for a derivative market and is one of the main areas where Stellar shines versus other networks like Ethereum.  
-- *Decentralization*:  
-Unlike other blockchains, Stellar's network is truly decentralized. There is no governing body OptionBlox needs to rely on, as long as Stellar has users, OptionBlox will function.
-- *[Anchors](https://www.stellar.org/developers/guides/concepts/assets.html)*  
-Stellar has a multi-asset functionality called anchoring that enables users to create custom assets on its ledger and tie them to real-world assets. OptionBlox uses this to tokenize derivatives and to write derivatives involving any asset.  
-- *Flexible Transaction System*:  
-Stellar has a flexible transaction system that allows us to create derivatives and make them trust-free, tradeable, and safe.  
-- *[Turing Signing Servers](https://github.com/tyvdh/turing-signing-server)*:\
-The Stellar Community is currently discussing implementing a new ecosystem feature called Turing Signing Servers. These are a decentralized network of servers that hold uploaded smart contracts that are associated with private keys. The servers will sign transactions with these private keys if the transactions meet the specifications of the contracts. OptionBlox will use this tool to manage some of the business logic surrounding contract execution and closure. However, if this feature is not implemented OptionBlox will simply use an open-source repository to manage contract logic.
-
-[Stellar's website](https://stellar.org/developers)
-
-<p>&nbsp;</p>
-
-### OptionBlox's Derivative Protocols:
-OptionBlox features a range of tradeable decentralized derivative products
-
-##### Covered Options
-OptionBlox covered options are created using a network of accounts and TSS(Turing-Signing-Server) smart contracts. This protocol is based completely on Stellar's network and can operate without any input besides users submitting transactions. These options are American style meaning they can be exercised at any time before expiration.
-
+##### Covered Options txFunctions
+1. *Write txFunction*\
+Intakes contract parameters from the option contract writer, sets up the writer's holding account, and issues the derivative token to the contract writer.
+2. *Execute txFunction*\
+Intakes execution request, derivative token, and required underlying(for puts) or counter(for calls) asset tokens from the option contract owner. Then sends the underlying(for calls) or counter(for puts) asset tokens to the contract owner.
+3. *Settle txFunction*\
+Sends the proceeds from execution to the option contract writer and deletes the now void derivative and derivative exercise tokens.
+4. *Close txFunction*\ 
+Called after option contract expiration. Returns the commited underlying or counter asset tokens to the contract writer and deletes the derivative tokens, exercise tokens, and holding account. This contract will also perform the Settle txFunction's operations if that txFunction has not already been called.
+5. *earlyClose txFunction*\
+Called in the case where an option contract is exercised before the expiration date or the writer covers their option by buying an identical option token. Returns the commited underlying to the writer if the option was covered, deletes the now void derivative and derivative exercise tokens, and deletes the writer's holding if the option was fully exercise or covered. This contract will also perform the Settle txFunction's operations if that txFunction has not already been called.
+##### Covered Options Protocol Diagraom
 Below is a basic model showing the writing, sale, and exercise processes of a covered call with an underlying of 1 Bitcoin(BTC), and a strike price of 1000 Lumens(XLM).
 
 ![covered](./static/whitepaper/coveredOptionsDiagram.png "Covered Options")
 
 ##### Uncovered Options
-OptionBlox uncovered options are similar to OptionBlox covered options. The key differences are the holding account also serves as a margin account for the seller and the execution process differs slightly.
+OptionBlox uncovered options are similar to OptionBlox covered options. The key differences are the holding account also serves as a margin account for the seller and the execution process differs slightly. This protocol uses the same accounts and tokens as the covered options protocol. The txFunctions that power this protocol perform the same functions as the ones involved in the covered call protocol, the txFunctions just have different operations.
 
-Below is a model showing the writing, sale, and execution process of an uncovered call. The call contract's underlying is 1 BTC, its strike price is 100 XLM, the initial margin requirement is 15%, and the minimum margin requirement is 10%. These options are American style.
-
+##### Uncovered Options Protocol Diagram
+Below is a model showing the writing, sale, and execution process of an uncovered call. The call contract's underlying is 1 BTC, its strike price is 100 XLM, the initial margin requirement is 15%, and the minimum margin requirement is 10%.
 ![uncoverd](./static/whitepaper/uncoveredOptionsDiagram.png "Uncovered Options")
 
 ##### Futures
-OptionBlox futures also operates using a network of accounts and TSS contracts. Instead of using derivative tokens, the futures protocol issues tokens for the underlying asset, so a party who enters a contract with an underlying of 100 XLM would receive 100 XLMFUTURE tokens. Contract parties exchange these tokens to enter a futures contract; the price they exchanged tokens at represents the spot rate the future is entered at. OptionBlox settles futures daily using a [mark-to-market](https://www.cmegroup.com/education/courses/introduction-to-futures/mark-to-market.html] system.
-
-Below is a basic model showing the writing, sale, execution, and exit of a 100XLM:1BTC future with a 15% initial margin requirement and a 10% minimum margin requirement.
-
-*Diagram is currently under revision*
+OptionBlox futures also operates using a network of accounts and TSS contracts. Instead of using derivative tokens, the futures protocol issues tokens for the underlying asset, so a party who enters a contract with an underlying of 100 XLM would receive 100 XLMFUTURE tokens. Contract parties exchange these tokens to enter a futures contract; the price they exchanged tokens at represents the spot rate the future is entered at. OptionBlox settles futures daily using a [mark-to-market](https://www.cmegroup.com/education/courses/introduction-to-futures/mark-to-market.html] system. The txFunctions for this protocol are not finalized yet so we will add more details on this protocol to this whitepaper as it gets closer to launch.
 
 ##### Forwards
-We have an internal forwards protocol we plan to implement in the future. It is a modified version of the OptionBlox futures protocol.
+We have an internal forwards protocol we plan to implement in the future. It is a modified version of the OptionBlox futures protocol. We will add details regarding this protocol to this whitepaper once the protocol gets closer to launch
 
 ##### Swaps
-We have an internal swaps protocol we plan to implement in the future. It is a modified version of the OptionBlox futures protocol.
-
-#### Protocol Details
-
-##### Contract Sizing
-Contract sizes are standardized. This means that options and futures contracts have uniform underlying amounts. For example, all Ethereum options and futures will have an underlying of 1 ETH. This standardization helps maintain contract volume.
-
-##### Partial Contracts
-Tokenizing derivatives allows OptionBlox users to write partial derivative contracts. Users can write and sell fractions of contracts and they will just be sent an equivalent portion of the contract token(s). This is crucial to maintain standardized contract sizes but allow users with less capital to still utilize the derivatives ecosystem.
+We have an internal swaps protocol we plan to implement in the future. It is a modified version of the OptionBlox futures protocol. We will add details regarding this protocol to this whitepaper once the protocol gets closer to launch.
 
 ##### Liquidation Prodecures
-OptionBlox uncovered options and futures require position liquidation when the position holders become delinquent in meeting their margin requirements or fail to provide the necessary underlying to complete contract settlement. In these situations, the protocol will attempt to liquidate positions on the Stellar DEX. However, if low volume makes this impossible, OptionBlox uses a TSS managed liquidity pool to liquidate the contracts. 
+OptionBlox uncovered options require position liquidation when the position holders become delinquent in meeting their margin requirements or fail to provide the necessary underlying to complete contract settlement. In these situations, the protocol will attempt to liquidate positions on the Stellar DEX. However, if low volume makes this impossible, OptionBlox uses a TSS managed liquidity pool to liquidate the contracts. 
 
 ![uncoveredLqd](./static/whitepaper/uncoveredOptionsLiquidation.png "Insufficient Margin Liquidation (option)")
-![futureNoUnder](./static/whitepaper/futureNoUnderlying.png "Insufficient Underlying (future)")
 
-The OptionBlox liquidity pool is made up of user-provided funds and managed by a TSS contract. Users will receive tokens in exchange for the funds they contribute, the tokens represent their contribution and govern the percentage of liquidation profits they receive. Because of the margin requirements for OptionBlox contracts, it will never be in the position holder's economic interest to allow liquidation, and there will always be an economic incentive to liquidate the position. Profits from liquidating delinquent positions will be paid out to liquidity providers every week. 
+The OptionBlox liquidity pool is made up of user-provided funds and managed by a TSS contract. Users will receive tokens in exchange for the funds they contribute, the tokens represent their contribution and govern the percentage of liquidation profits they receive. Because of the margin requirements for OptionBlox contracts, it will never be in the position holder's economic interest to allow liquidation, and there will always be an economic incentive to liquidate the position.
 
-<p>&nbsp;</p>
-
-### The OptionBlox App:
-The OptionBlox team is currently developing web and mobile applications to allow all parties to easily use the OptionBlox protocol. This app will act as a platform that interfaces with the Stellar, OptionBlox, and user wallets to provide user-freindly derivative writing, trading, and execution experience. The app does not run orderbooks, pair buyers and sellers, issue securities, or serve as custodian over user funds or keys. It simply serves as a browser that enables users to easily interact with OptionBlox and Stellar.
-
-<p>&nbsp;</p>
-
-### Security:
-
-OptionBlox uses a variety of Stellar's features to ensure that derivatives and margin accounts associated with the protocol are secure.
-
-- *Turing Signing Server Protocol*:\
-The TSS protocol provides OptionBlox with a method of adding complex business logic to transactions without requiring our organization to have control over the accounts involved in the transactions. This further decentralizes OptionBlox without reducing efficiency.\
-[More Info](https://github.com/tyvdh/turing-signing-server)
-
-- *Locking Accounts*:\
-In most OptionBlox protocols, collateral holding accounts add TSS contracts as signers then lock themselves. This ensures that the only transactions they can post in the future are ones approved by the contracts. This security measure locks funds in collateral holding accounts until contract exercise or expiration.  
-[More Info](https://www.stellar.org/developers/guides/concepts/multi-sig.html)
-
-- *Timebound Transactions*:  
-In all OptionBlox protocols, timebound transactions are used in the closing process to ensure certain transactions cannot be submitted early. Submitting some transactions early would disrupt the exercise process.  
-[More Info](https://www.stellar.org/developers/guides/concepts/multi-sig.html)
-
-- *Stellar Consensus Protocol*  
-Stellar's consensus protocol rejects transactions when they do not align with the correct ledger state. For example, a user could not fill a sell offer if their account lacked the necessary funds.  
-[More Info](https://www.stellar.org/developers/guides/concepts/scp.html)  
-
-- *Account Flags*  
-  - *Authorization Required Flag*:\
-  OptionBlox uses the authorization required flag for some custom derivative facilitation tokens it issues. This ensures that only users that should be allowed to hold certain tokens can hold the tokens.
-  - *Authorization Revokable Flag*:\
-  OptionBlox uses authorization revokable flags in combination with authorization required flags to allow accounts to hold custom tokens used for derivative facilitation only during certain transactions.\
-[More Info](https://www.stellar.org/developers/guides/concepts/accounts.html#flags)
-
-- *SEP-0007 Integration*:\
-The OptionBlox app will use Stellar's SEP-0007 protocol to send transaction envelopes to users who can then add their signature in a trusted wallet or exchange. This ensures that the app will never serve as custodian over user funds or keys.\
-[More Info](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0007.md)
-
-<p>&nbsp;</p>
-
-### Anchors:
-
-The functionality of OptionBlox is directly tied to the availability of Anchors in the Stellar ecosystem. To use a non-native asset as an underlying there has to be a third party already anchoring the asset.  
-Here are some non-native assets that are currently anchored by reputable parties:
-- USD: US dollar anchor provided by [AnchorUSD](https://www.anchorusd.com/), a Stellar partner.
-- XCN: Chinese yuan anchor provided by [FChain](https://fchain.io).  
-- BTC: Bitcoin anchor provided by [Papaya](https://apay.io/in).
-- EURT: Euro anchor provided by [Tempo](https://tempo.eu.com/en).
-- NGNT: Nigerian Naira anchor provided by [Cowrie](https://www.cowrie.exchange/).
-- GOLD: Gold anchor provided by [StellarMetals](stellarmetals.org).
-- ETH: Etherium anchor provided by [Papaya](https://apay.io/in).
-- DSTOQ: Equities anchored on Stellar by [DSTOQ](https://dstoq.com).
-
-More anchors can be viewed on [StellarX](https://www.stellarx.com/markets)
-
-As Stellar's network grows we are confident that more anchors will materialize and expand OptionBlox's functionality.
-
-<p>&nbsp;</p>
-
-### Roadmap
- 1. *Q4 2020*
-   - Finalize Website
-   - Continue Application Development
-   - Expand Fundraising Efforts
-   - Explore Ecosystem Partnerships
- 2. *Q1 2021*
-   - Roll-out Full Demo/Alpha
-     - Functional Testnet Application
-   - Explore Market Maker Partnerships
- 3. *Q2 2021*
-   - Launch Open-Beta for Covered Options
-   - Launch Closed Alpha for Uncovered Options and Futures
-   - Launch Closed Alpha for OTC contract development tool
-   
-   <p>&nbsp;</p>
-   
-### Glossary
-Terms:  
-- *Smart Contract:* A protocol to digitally facilitate, verify, or enforce the performance of a contract.  
-- *Keypair:* When an account is created on Stellar's ledger, it is assigned a public and a private key. The private key is used to sign transactions and the public key is used to identify the account. These two keys make up the account's keypair.
-- *Underlying:* The asset a derivative contract governs. This is what the contract's value is based on. In the case of a call option that gives the owner the right to buy Ethereum, the contract underlying would be Ethereum. 
-- *Hedging:* Hedging is a term for making an investment that reduces the risk of another investment.

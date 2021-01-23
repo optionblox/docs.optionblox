@@ -1,5 +1,6 @@
+[<img src = "./static/logo/obx.png">](https://www.optionblox.com/)
 # Use Cases
-
+OptionBlox enabled derivative use cases.
 <p>&nbsp;</p>
 
 
