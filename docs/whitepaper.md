@@ -16,7 +16,7 @@ This whitepaper covers the technical details of OptionBlox's decentralized deriv
 ### Table of Contents:
 - [Introduction](#introduction)
 - [Contract Design](#Option-Contract-Design)
-- [OptionBlox's Derivative Protocols](#txfunction-derivative-protocols)
+- [OptionBlox's Derivative Protocols](#txfunction-protocols)
 
 <p>&nbsp;</p>
 
