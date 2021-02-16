@@ -11,4 +11,4 @@ Governance proposals can be created by any account holding more than .1% of outs
 Users have three days to vote on proposals. They vote by adding a trustline for the asset YES:proposalAccount or NO:proposalAccount depending on whether they’re voting yes or no for the proposal. At the end of the voting period votes are tallied by getting all accounts with YES or NO trustlines and recording the number of OBX tokens held by each account. If the vote passes (60% of votes are YES) the proposal status data entry will be changed to approved, if it does not pass the entry will be changed to denied. A proposal vote must reach a quorum of 5% of outstanding governance tokens in order to pass.
 
 ## Proposal Implementation
-After a proposal passes there is a 2 day delay, then proposals are implemented by signing the transaction hash in the proposal account data entry and deleting the proposal account. 
+After a proposal passes there is a 2 day delay, then proposals are implemented by using the Governance txFunction to sign the transaction hash in the proposal account data entry and delete the proposal account.
