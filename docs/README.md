@@ -30,4 +30,5 @@ If you would like to get involved, or have questions, please reach out to us dir
 [Keybase](https://keybase.io/team/optionblox)
 
 [Telegram](https://t.me/optionblox)
-   
+
+OptionBlox is a [Script3](https://www.script3.io/) project. Visit our website to learn about other DeFi protocols we have built on Stellar.
