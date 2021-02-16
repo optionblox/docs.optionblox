@@ -1,9 +1,9 @@
 # OptionBlox Technical Whitepaper
 ## A Decentralized Derivatives Solution Built on Stellar
 
-Markus Paulson-Luna: markuspaulsonluna@optionblox.com\
-Andrew Pierskalla: andrew@optionblox.com\
-Alexander Mootz: alex@optionblox.com
+Markus Paulson-Luna: markus@script3.io\
+Andrew Pierskalla: andrew@script3.io\
+Alexander Mootz: alex@script3.io
 
 <p>&nbsp;</p>
 
